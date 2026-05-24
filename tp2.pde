@@ -46,7 +46,7 @@ void draw() {
   }
 }
 
-// Pasa a la siguiente pantalla
+// Pasa siguiente pantalla
 void siguientePantalla() {
   pantalla = pantalla + 1;
   if (pantalla >= 5) fin = true; // si termino activa fin
@@ -54,14 +54,14 @@ void siguientePantalla() {
   timer = millis();
 }
 
-// Reinicia si se clickea el boton
+// Reinicio
 void mouseClicked() {
   if (fin && mouseX > 220 && mouseX < 420 && mouseY > 300 && mouseY < 360) {
     pantalla = 0; alfa = 0; fin = false; timer = millis();
   }
 }
 
-// Avanza manualmente con clic
+// Avanzar con clic
 void mousePressed() {
   if (fin == false) siguientePantalla();
 }
