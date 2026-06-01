@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Noche Estrellada – Festival de Cine · OLGA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ─────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --purple-deep:#0d0020;
+  --purple-dark:#1a0040;
+  --purple-mid:#2d0060;
+  --purple-bright:#5a00b4;
+  --green:#b5f23d;
+  --green-dark:#9fd435;
+  --white:#ffffff;
+  --white-60:rgba(255,255,255,0.6);
+  --white-40:rgba(255,255,255,0.4);
+  --white-20:rgba(255,255,255,0.2);
+  --white-10:rgba(255,255,255,0.1);
+  --white-06:rgba(255,255,255,0.06);
+  --card-bg:rgba(255,255,255,0.07);
+  --card-border:rgba(255,255,255,0.12);
+  --font-title:'Poppins',sans-serif;
+  --font-body:'Roboto',sans-serif;
+  --radius-sm:8px;
+  --radius-md:14px;
+  --radius-lg:20px;
+  --radius-pill:999px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--purple-deep);color:var(--white);overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--purple-dark);}
+::-webkit-scrollbar-thumb{background:var(--purple-bright);border-radius:3px;}
+
+/* ── NAV ─────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;padding:16px 40px;gap:24px;
+  background:rgba(13,0,32,0.7);backdrop-filter:blur(16px);
+  border-bottom:0.5px solid rgba(255,255,255,0.08);
+  transition:background .3s;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-wordmark{font-size:22px;font-weight:800;color:var(--white);letter-spacing:2px;}
+.nav-links{display:flex;gap:28px;margin-left:auto;align-items:center;}
+.nav-link{color:var(--white-60);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:color .2s;}
+.nav-link:hover{color:var(--green);}
+.nav-socials{display:flex;gap:8px;margin-left:16px;}
+.nav-social{
+  width:30px;height:30px;border:0.5px solid var(--white-20);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:border-color .2s,background .2s;text-decoration:none;
+  color:var(--white-60);font-size:13px;
+}
+.nav-social:hover{border-color:var(--green);background:rgba(181,242,61,0.1);color:var(--green);}
+
+/* ── HERO ────────────────────────────────────── */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600&q=80') center/cover no-repeat;
+  transform:scale(1.05);animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{to{transform:scale(1);}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(26,0,64,.55) 0%,rgba(26,0,64,.65) 40%,rgba(13,0,32,.90) 80%,var(--purple-deep) 100%);
+}
+.hero-stars{position:absolute;inset:0;pointer-events:none;}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--dur,3s) ease-in-out infinite alternate;}
+@keyframes twinkle{0%{opacity:.1;}100%{opacity:var(--op,.8);}}
+
+.hero-content{
+  position:relative;z-index:10;flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:120px 24px 100px;text-align:center;
+}
+.section-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;animation:fadeUp .8s ease both;animation-delay:.2s;}
+.eyebrow-line{height:1px;width:36px;background:rgba(181,242,61,0.5);}
+.eyebrow-text{font-size:12px;font-weight:600;color:var(--green);letter-spacing:4px;text-transform:uppercase;}
+
+.hero-title-wrap{position:relative;margin-bottom:16px;animation:fadeUp .8s ease both;animation-delay:.35s;}
+.hero-title-shadow{
+  position:absolute;top:6px;left:6px;
+  font-size:clamp(52px,8vw,88px);font-weight:900;
+  color:rgba(90,0,180,0.4);line-height:1;
+  pointer-events:none;text-transform:uppercase;letter-spacing:-1px;
+}
+.hero-title{
+  font-size:clamp(52px,8vw,88px);font-weight:900;
+  color:var(--green);line-height:1;
+  text-transform:uppercase;letter-spacing:-1px;position:relative;
+}
+.hero-sub{font-size:17px;font-weight:300;color:var(--white-60);margin-bottom:14px;animation:fadeUp .8s ease both;animation-delay:.5s;}
+.hero-meta{
+  display:flex;align-items:center;gap:10px;margin-bottom:32px;
+  flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .8s ease both;animation-delay:.6s;
+}
+.hero-meta-item{display:flex;align-items:center;gap:6px;}
+.hero-meta-icon{font-size:14px;color:var(--green);}
+.hero-meta-text{font-size:14px;color:var(--white-40);}
+.meta-dot{color:var(--white-20);}
+
+.btn-cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--green);border:none;border-radius:var(--radius-pill);
+  color:#0d0020;font-size:16px;font-weight:700;font-family:var(--font-body);
+  padding:16px 52px;cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  letter-spacing:.3px;margin-bottom:48px;
+  box-shadow:0 0 40px rgba(181,242,61,.25);
+  animation:fadeUp .8s ease both;animation-delay:.75s;
+}
+.btn-cta:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 0 60px rgba(181,242,61,.4);}
+
+.countdown-wrap{display:flex;align-items:center;gap:12px;animation:fadeUp .8s ease both;animation-delay:.9s;}
+.cd-box{
+  background:rgba(181,242,61,.1);border:1px solid rgba(181,242,61,.3);
+  border-radius:var(--radius-sm);padding:12px 18px;text-align:center;min-width:64px;
+  backdrop-filter:blur(8px);
+}
+.cd-num{font-size:26px;font-weight:700;color:var(--green);line-height:1;font-variant-numeric:tabular-nums;}
+.cd-label{font-size:10px;color:var(--white-40);margin-top:4px;letter-spacing:2px;font-weight:500;}
+.cd-sep{color:var(--green);font-size:24px;font-weight:300;margin-top:-8px;}
+
+.hero-crowd{
+  position:absolute;bottom:0;left:0;width:100%;height:160px;background:var(--purple-deep);
+  clip-path:polygon(0 65%,3% 52%,6% 60%,9% 48%,12% 58%,15% 44%,18% 55%,21% 42%,24% 53%,27% 40%,30% 52%,33% 38%,36% 50%,39% 37%,42% 49%,45% 35%,48% 47%,51% 33%,54% 46%,57% 32%,60% 45%,63% 38%,66% 50%,69% 40%,72% 53%,75% 42%,78% 55%,81% 44%,84% 57%,87% 46%,90% 59%,93% 48%,96% 60%,100% 52%,100% 100%,0 100%);
+}
+
+/* ── SECTIONS COMMON ─────────────────────────── */
+section{padding:80px 40px;position:relative;}
+.section-inner{max-width:980px;margin:0 auto;}
+.section-eyebrow-center{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;}
+.section-title{font-size:clamp(26px,4vw,38px);font-weight:800;color:var(--white);text-align:center;margin-bottom:10px;line-height:1.1;}
+.section-sub{font-size:15px;color:var(--white-40);text-align:center;margin-bottom:44px;font-weight:300;}
+
+/* ── FESTIVAL ────────────────────────────────── */
+.festival-section{background:linear-gradient(180deg,var(--purple-deep) 0%,#1a0040 50%,#220055 100%);}
+
+.info-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:40px;}
+.info-box{
+  background:var(--card-bg);border:0.5px solid var(--card-border);
+  border-radius:var(--radius-md);padding:20px 16px;text-align:center;
+  transition:border-color .2s,background .2s;
+}
+.info-box:hover{border-color:rgba(181,242,61,.4);background:rgba(181,242,61,.06);}
+.info-box-icon{font-size:22px;margin-bottom:8px;display:block;}
+.info-box-label{font-size:10px;color:var(--white-40);letter-spacing:2px;margin-bottom:6px;font-weight:600;}
+.info-box-val{font-size:14px;font-weight:600;color:var(--white);}
+
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px;}
+.feat-card{
+  background:var(--card-bg);border:0.5px solid var(--card-border);
+  border-radius:var(--radius-lg);padding:28px 24px;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.feat-card:hover{border-color:rgba(181,242,61,.35);background:rgba(181,242,61,.05);transform:translateY(-2px);}
+.feat-icon-wrap{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(181,242,61,.12);border:0.5px solid rgba(181,242,61,.3);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;font-size:22px;
+}
+.feat-title{font-size:17px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.feat-desc{font-size:13px;color:var(--white-40);line-height:1.65;font-weight:300;}
+.feat-desc .accent{color:var(--green);}
+.feat-wide{
+  background:var(--card-bg);border:0.5px solid var(--card-border);
+  border-radius:var(--radius-lg);padding:24px;
+  display:flex;align-items:center;gap:20px;
+  transition:border-color .25s,background .25s;
+}
+.feat-wide:hover{border-color:rgba(181,242,61,.35);background:rgba(181,242,61,.05);}
+.feat-wide .feat-icon-wrap{margin-bottom:0;flex-shrink:0;}
+
+/* ── CARTELERA ───────────────────────────────── */
+.cartelera-section{background:linear-gradient(180deg,#220055 0%,#0d0020 100%);}
+
+/* Carousel wrapper */
+.carousel-block{margin-bottom:32px;}
+.carousel-label{font-size:11px;font-weight:700;color:var(--green);letter-spacing:3px;margin-bottom:14px;padding-left:4px;}
+
+.carousel-row{position:relative;display:flex;align-items:center;gap:10px;}
+.carousel-track-wrap{
+  flex:1;overflow:hidden;border-radius:var(--radius-md);
+}
+.carousel-track{
+  display:flex;gap:14px;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+}
+.carousel-arrow{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:18px;color:var(--white-60);
+  transition:background .2s,border-color .2s,color .2s;
+  z-index:2;
+}
+.carousel-arrow:hover{background:rgba(181,242,61,.15);border-color:var(--green);color:var(--green);}
+.carousel-arrow:disabled{opacity:.25;pointer-events:none;}
+
+.movie-card{
+  flex:0 0 calc(33.333% - 10px);
+  border-radius:var(--radius-md);overflow:hidden;
+  position:relative;cursor:pointer;aspect-ratio:16/10;
+  transition:transform .3s;
+}
+.movie-card:hover{transform:scale(1.03);}
+.movie-thumb{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:filter .3s;
+}
+.movie-card:hover .movie-thumb{filter:brightness(.18) blur(1px);}
+.movie-overlay-base{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,0,32,.7) 0%,transparent 60%);
+}
+.movie-badge{
+  position:absolute;top:10px;left:10px;
+  padding:3px 10px;border-radius:5px;font-size:11px;font-weight:700;
+  backdrop-filter:blur(4px);
+}
+.movie-static-title{
+  position:absolute;bottom:12px;left:14px;right:14px;
+  font-size:15px;font-weight:700;color:#fff;
+  text-shadow:0 2px 8px rgba(0,0,0,.8);
+  transition:opacity .3s;
+}
+.movie-card:hover .movie-static-title{opacity:0;}
+.movie-info-hover{
+  position:absolute;inset:0;padding:20px;
+  display:flex;flex-direction:column;justify-content:center;
+  opacity:0;transition:opacity .3s;
+}
+.movie-card:hover .movie-info-hover{opacity:1;}
+.movie-hover-title{font-size:17px;font-weight:700;color:#fff;margin-bottom:12px;}
+.movie-detail{font-size:13px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.movie-detail-icon{color:var(--green);}
+.pantalla-pill{
+  display:inline-block;margin-top:8px;
+  background:rgba(181,242,61,.15);border:0.5px solid rgba(181,242,61,.5);
+  color:var(--green);padding:4px 12px;border-radius:var(--radius-pill);font-size:11px;font-weight:700;
+}
+
+/* ── UBICACIÓN ───────────────────────────────── */
+.ubicacion-section{background:linear-gradient(180deg,#0d0020 0%,#1a0040 100%);}
+.ubi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:980px;margin:0 auto;}
+.map-wrap{border-radius:var(--radius-lg);overflow:hidden;border:0.5px solid var(--card-border);position:relative;min-height:380px;}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block;min-height:380px;}
+.map-badge{
+  position:absolute;top:14px;left:14px;
+  background:rgba(13,0,32,.92);backdrop-filter:blur(8px);
+  border:0.5px solid rgba(181,242,61,.35);border-radius:10px;padding:10px 14px;
+}
+.map-badge-title{font-size:12px;font-weight:700;color:var(--green);}
+.map-badge-sub{font-size:11px;color:var(--white-40);margin-top:3px;}
+
+.ubi-cards{display:flex;flex-direction:column;gap:12px;}
+.ubi-card{
+  background:var(--card-bg);border:0.5px solid var(--card-border);
+  border-radius:var(--radius-md);padding:18px;transition:border-color .2s;
+}
+.ubi-card:hover{border-color:rgba(181,242,61,.3);}
+.ubi-card-header{display:flex;align-items:flex-start;gap:14px;}
+.ubi-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:rgba(181,242,61,.1);border:0.5px solid rgba(181,242,61,.25);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.ubi-card-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:5px;}
+.ubi-card-text{font-size:13px;color:var(--white-40);line-height:1.6;font-weight:300;}
+.transport-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:12px;}
+.tchip{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:var(--radius-sm);margin-bottom:8px;
+  background:rgba(255,255,255,.04);border:0.5px solid rgba(255,255,255,.08);
+}
+.tchip:last-child{margin-bottom:0;}
+.tchip-icon{font-size:18px;}
+.tchip-title{font-size:12px;font-weight:600;color:var(--white);}
+.tchip-sub{font-size:11px;color:var(--white-40);}
+.btn-maps{
+  width:100%;padding:13px;
+  background:rgba(181,242,61,.08);border:0.5px solid rgba(181,242,61,.4);
+  border-radius:var(--radius-md);color:var(--green);font-size:13px;font-weight:700;
+  cursor:pointer;font-family:var(--font-body);text-decoration:none;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .2s;
+}
+.btn-maps:hover{background:rgba(181,242,61,.15);}
+.ubi-notice{
+  max-width:980px;margin:20px auto 0;
+  background:rgba(181,242,61,.05);border:0.5px solid rgba(181,242,61,.2);
+  border-radius:var(--radius-md);padding:16px 20px;
+  display:flex;align-items:center;gap:14px;
+}
+.ubi-notice-icon{
+  width:36px;height:36px;border-radius:8px;flex-shrink:0;
+  background:rgba(181,242,61,.1);border:0.5px solid rgba(181,242,61,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:var(--green);
+}
+.ubi-notice-text{font-size:13px;color:var(--white-40);line-height:1.6;font-weight:300;}
+
+/* ── FORMULARIO ──────────────────────────────── */
+.form-section{background:linear-gradient(180deg,#1a0040 0%,#2d0060 50%,#1a0040 100%);}
+.form-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:32px;max-width:980px;margin:0 auto;align-items:start;
+}
+.form-wrap{
+  background:rgba(255,255,255,.06);border:0.5px solid var(--card-border);
+  border-radius:24px;padding:36px;backdrop-filter:blur(16px);
+}
+.form-fields{display:flex;flex-direction:column;gap:20px;}
+.form-group label{font-size:14px;font-weight:600;color:var(--white);display:block;margin-bottom:8px;}
+.form-group label .optional{color:var(--white-40);font-weight:400;font-size:12px;margin-left:4px;}
+.form-input{
+  width:100%;background:rgba(255,255,255,.07);
+  border:0.5px solid rgba(255,255,255,.18);border-radius:10px;
+  color:var(--white);padding:13px 16px;font-size:14px;font-family:var(--font-body);
+  outline:none;transition:border-color .2s,background .2s;font-weight:300;
+}
+.form-input::placeholder{color:var(--white-40);}
+.form-input:focus{border-color:rgba(181,242,61,.6);background:rgba(181,242,61,.04);}
+
+.counter-wrap{display:flex;gap:10px;align-items:center;}
+.counter-btn{
+  width:44px;height:44px;
+  background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.2);
+  border-radius:10px;color:var(--white);font-size:22px;font-weight:300;
+  cursor:pointer;font-family:var(--font-body);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s;flex-shrink:0;
+}
+.counter-btn:hover{background:rgba(181,242,61,.12);border-color:rgba(181,242,61,.4);color:var(--green);}
+.counter-disp{
+  flex:1;background:rgba(255,255,255,.07);
+  border:0.5px solid rgba(255,255,255,.18);border-radius:10px;
+  color:var(--white);font-size:16px;font-weight:700;
+  height:44px;display:flex;align-items:center;justify-content:center;
+}
+.mode-btns{display:flex;gap:10px;}
+.mode-btn{
+  flex:1;padding:14px 12px;border-radius:10px;
+  font-size:14px;font-weight:600;font-family:var(--font-body);
+  cursor:pointer;transition:all .2s;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.mode-btn-icon{font-size:22px;display:block;}
+.mode-btn.active{background:rgba(181,242,61,.15);border:1.5px solid var(--green);color:var(--green);}
+.mode-btn.inactive{background:rgba(255,255,255,.05);border:0.5px solid rgba(255,255,255,.18);color:var(--white-60);}
+.mode-btn:hover{border-color:rgba(181,242,61,.5);}
+.auto-fields{
+  background:rgba(181,242,61,.04);border:0.5px solid rgba(181,242,61,.2);
+  border-radius:10px;padding:16px;display:none;flex-direction:column;gap:16px;
+}
+.auto-fields.visible{display:flex;}
+.auto-notice{font-size:12px;color:rgba(181,242,61,.8);display:flex;align-items:center;gap:6px;}
+.form-hint{font-size:12px;color:var(--white-40);margin-top:6px;font-weight:300;}
+.btn-submit{
+  width:100%;padding:16px;
+  background:var(--green);border:none;border-radius:var(--radius-pill);
+  color:#0d0020;font-size:16px;font-weight:800;font-family:var(--font-body);
+  cursor:pointer;letter-spacing:.3px;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 0 40px rgba(181,242,61,.2);margin-top:4px;
+}
+.btn-submit:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 0 60px rgba(181,242,61,.4);}
+
+/* Autocine image panel */
+.autocine-panel{
+  border-radius:var(--radius-lg);overflow:hidden;
+  position:relative;height:100%;min-height:520px;
+}
+.autocine-img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  border-radius:var(--radius-lg);
+  border:0.5px solid var(--card-border);
+}
+.autocine-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(13,0,32,.95) 0%,transparent 100%);
+  padding:32px 24px 24px;border-radius:0 0 var(--radius-lg) var(--radius-lg);
+}
+.autocine-caption-title{font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.autocine-caption-sub{font-size:13px;color:var(--white-40);font-weight:300;line-height:1.5;}
+
+/* SUCCESS */
+.form-success{display:none;text-align:center;padding:48px 24px;}
+.form-success.visible{display:block;}
+.success-icon{font-size:56px;margin-bottom:16px;display:block;}
+.success-title{font-size:22px;font-weight:700;color:var(--green);margin-bottom:8px;}
+.success-sub{font-size:14px;color:var(--white-40);font-weight:300;}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{
+  background:#06000f;padding:28px 40px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  border-top:0.5px solid rgba(255,255,255,.06);
+}
+.footer-brand{display:flex;align-items:center;gap:10px;}
+.footer-wordmark{font-size:14px;font-weight:800;color:var(--white);letter-spacing:2px;}
+.footer-sub{font-size:13px;color:var(--white-40);margin-left:10px;}
+.footer-links{display:flex;gap:20px;}
+.footer-link{font-size:12px;color:var(--white-40);cursor:pointer;text-decoration:none;transition:color .2s;}
+.footer-link:hover{color:var(--green);}
+
+/* ── ANIMATIONS ──────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  section{padding:60px 20px;}
+  .info-row{grid-template-columns:repeat(2,1fr);}
+  .feat-grid{grid-template-columns:1fr;}
+  .movie-card{flex:0 0 calc(80% - 10px);}
+  .ubi-grid{grid-template-columns:1fr;}
+  .form-layout{grid-template-columns:1fr;}
+  .autocine-panel{min-height:260px;}
+  footer{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-brand" href="#">
+    <div style="width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;">
+      <span style="font-size:9px;font-weight:900;color:#c00;text-align:center;line-height:1.1;">OLGA</span>
+    </div>
+    <span class="nav-wordmark">OLGA</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#festival">El festival</a>
+    <a class="nav-link" href="#cartelera">Cartelera</a>
+    <a class="nav-link" href="#ubicacion">Ubicación</a>
+    <a class="nav-link" href="#reservar">Reservar</a>
+  </div>
+  <div class="nav-socials">
+    <a class="nav-social" href="#" title="YouTube">▶</a>
+    <a class="nav-social" href="#" title="Instagram">◎</a>
+    <a class="nav-social" href="#" title="X">✕</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stars" id="stars"></div>
+  <div class="hero-content">
+    <div class="section-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Festival de Cine</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <div class="hero-title-wrap">
+      <div class="hero-title-shadow" aria-hidden="true">NOCHE<br>ESTRELLADA</div>
+      <h1 class="hero-title">NOCHE<br>ESTRELLADA</h1>
+    </div>
+    <p class="hero-sub">Viví la experiencia del cine bajo las estrellas</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">📍</span>
+        <span class="hero-meta-text">La Plata, Buenos Aires</span>
+      </div>
+      <span class="meta-dot">·</span>
+      <div class="hero-meta-item">
+        <span class="hero-meta-icon">📅</span>
+        <span class="hero-meta-text">Sáb 15 de noviembre · 18:00 hs</span>
+      </div>
+    </div>
+    <button class="btn-cta" onclick="document.getElementById('reservar').scrollIntoView({behavior:'smooth'})">
+      Reservar mi lugar
+    </button>
+    <div class="countdown-wrap">
+      <div class="cd-box"><div class="cd-num" id="cd-d">--</div><div class="cd-label">DÍAS</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-box"><div class="cd-num" id="cd-h">--</div><div class="cd-label">HS</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-box"><div class="cd-num" id="cd-m">--</div><div class="cd-label">MIN</div></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-box"><div class="cd-num" id="cd-s">--</div><div class="cd-label">SEG</div></div>
+    </div>
+  </div>
+  <div class="hero-crowd"></div>
+</section>
+
+<!-- FESTIVAL -->
+<section class="festival-section" id="festival">
+  <div class="section-inner">
+    <div class="section-eyebrow-center fade-up">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">El Festival</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title fade-up">El más esperado por los amantes del cine</h2>
+    <p class="section-sub fade-up">Una experiencia única donde vos elegís cómo vivir el cine.</p>
+    <div class="info-row fade-up">
+      <div class="info-box"><span class="info-box-icon">📅</span><div class="info-box-label">FECHA</div><div class="info-box-val">Sáb 15 de noviembre</div></div>
+      <div class="info-box"><span class="info-box-icon">🕕</span><div class="info-box-label">HORARIO</div><div class="info-box-val">Desde las 18:00 hs</div></div>
+      <div class="info-box"><span class="info-box-icon">📍</span><div class="info-box-label">LUGAR</div><div class="info-box-val">Hipódromo de La Plata</div></div>
+      <div class="info-box"><span class="info-box-icon">🎥</span><div class="info-box-label">MODALIDAD</div><div class="info-box-val">Aire libre + autocine</div></div>
+    </div>
+    <div class="feat-grid fade-up">
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🎬</div>
+        <div class="feat-title">Proyecciones simultáneas</div>
+        <div class="feat-desc">Distintas películas en simultáneo en diferentes pantallas. Armá tu propio recorrido dentro del festival.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🚗</div>
+        <div class="feat-title">Cine al aire libre y autocine</div>
+        <div class="feat-desc">Elegí cómo vivirlo: desde tu auto o en espacios al aire libre. Cada formato tiene su propio ambiente.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🎭</div>
+        <div class="feat-title">Dresscode</div>
+        <div class="feat-desc">Vení disfrazado de tu personaje favorito. <span class="accent">No es obligatorio, pero suma mucho al ambiente.</span></div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon-wrap">🍔</div>
+        <div class="feat-title">Espacios gastronómicos</div>
+        <div class="feat-desc">Comida y bebida disponibles en el predio. Disfrutá sin salir de la experiencia del festival.</div>
+      </div>
+    </div>
+    <div class="feat-wide fade-up">
+      <div class="feat-icon-wrap">🌙</div>
+      <div>
+        <div class="feat-title">Ambiente nocturno</div>
+        <div class="feat-desc">Luces, música y una atmósfera pensada para vivir el cine de otra manera. Una noche que no vas a olvidar.</div>
+      </div>
+    </div>
+    <!-- SIN CTA en esta sección -->
+  </div>
+</section>
+
+<!-- CARTELERA -->
+<section class="cartelera-section" id="cartelera">
+  <div class="section-inner">
+    <div class="section-eyebrow-center fade-up">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Cartelera</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title fade-up">Películas del festival</h2>
+    <p class="section-sub fade-up">Pasá el mouse por cada película para ver los detalles.</p>
+
+    <!-- Fila 1: Terror -->
+    <div class="carousel-block fade-up">
+      <div class="carousel-row">
+        <button class="carousel-arrow" id="arrow-prev-0" onclick="slide(0,-1)">‹</button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="track-0"></div>
+        </div>
+        <button class="carousel-arrow" id="arrow-next-0" onclick="slide(0,1)">›</button>
+      </div>
+    </div>
+
+    <!-- Fila 2: Drama/Thriller -->
+    <div class="carousel-block fade-up">
+      <div class="carousel-row">
+        <button class="carousel-arrow" id="arrow-prev-1" onclick="slide(1,-1)">‹</button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="track-1"></div>
+        </div>
+        <button class="carousel-arrow" id="arrow-next-1" onclick="slide(1,1)">›</button>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:12px;color:rgba(255,255,255,.2);margin-top:24px;">Proyecciones simultáneas · Aire libre y autocine</p>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="ubicacion-section" id="ubicacion">
+  <div class="section-inner">
+    <div class="section-eyebrow-center fade-up">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Ubicación</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title fade-up">¿Dónde está el festival?</h2>
+    <p class="section-sub fade-up">Hipódromo de La Plata — un escenario único para una noche única.</p>
+    <div class="ubi-grid fade-up">
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.5678!2d-57.9405!3d-34.9245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e7b16ef03b63%3A0x5e2d89ee18ded61f!2sHip%C3%B3dromo+de+La+Plata!5e0!3m2!1ses-419!2sar!4v1700000000001"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa del Hipódromo de La Plata">
+        </iframe>
+        <div class="map-badge">
+          <div class="map-badge-title">📍 Hipódromo de La Plata</div>
+          <div class="map-badge-sub">Av. 44 entre 1 y 2, La Plata</div>
+        </div>
+      </div>
+      <div class="ubi-cards">
+        <div class="ubi-card">
+          <div class="ubi-card-header">
+            <div class="ubi-icon">🏟️</div>
+            <div>
+              <div class="ubi-card-title">El lugar</div>
+              <div class="ubi-card-text">El Hipódromo de La Plata ofrece un predio amplio al aire libre, ideal para las proyecciones simultáneas y el sector de autocine.</div>
+              <div class="ubi-card-text" style="margin-top:6px;">Av. 44 entre calles 1 y 2<br>La Plata, Buenos Aires</div>
+            </div>
+          </div>
+        </div>
+        <div class="ubi-card">
+          <div class="transport-title">🗺️ Cómo llegar</div>
+          <div class="tchip"><span class="tchip-icon">🚌</span><div><div class="tchip-title">Colectivo</div><div class="tchip-sub">Líneas 202, 275 — bajada Av. 44</div></div></div>
+          <div class="tchip"><span class="tchip-icon">🚗</span><div><div class="tchip-title">En auto — Autocine</div><div class="tchip-sub">Ingreso vehicular por Av. 44. Capacidad limitada.</div></div></div>
+          <div class="tchip"><span class="tchip-icon">🚶</span><div><div class="tchip-title">A pie</div><div class="tchip-sub">A 10 min caminando desde el centro de La Plata.</div></div></div>
+        </div>
+        <a class="btn-maps" href="https://maps.google.com/?q=Hipódromo+de+La+Plata" target="_blank" rel="noopener">
+          🔗 Abrir en Google Maps
+        </a>
+      </div>
+    </div>
+    <div class="ubi-notice fade-up">
+      <span class="ubi-notice-icon">i</span>
+      <p class="ubi-notice-text">Los lugares para autocine son limitados. Si venís en auto, completá la patente en el formulario de reserva para garantizar tu acceso al sector vehicular.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVAS -->
+<section class="form-section" id="reservar">
+  <div class="section-inner">
+    <div class="section-eyebrow-center fade-up">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Reservas</span>
+      <div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title fade-up">Reservá tu lugar</h2>
+    <p class="section-sub fade-up">Te enviaremos la confirmación a tu mail.</p>
+
+    <div class="form-layout fade-up">
+
+      <!-- IZQUIERDA: formulario -->
+      <div class="form-wrap">
+        <div id="form-content">
+          <div class="form-fields">
+            <div class="form-group">
+              <label for="nombre">Nombre y apellido</label>
+              <input class="form-input" type="text" id="nombre" placeholder="Ej: Ana García" autocomplete="name"/>
+            </div>
+            <div class="form-group">
+              <label for="mail">Ingresa tu mail</label>
+              <input class="form-input" type="email" id="mail" placeholder="Tu@mail.com" autocomplete="email"/>
+            </div>
+            <div class="form-group">
+              <label>Cantidad de entradas</label>
+              <div class="counter-wrap">
+                <button class="counter-btn" onclick="changeCount(-1)" aria-label="Menos">−</button>
+                <div class="counter-disp" id="cnt" aria-live="polite">1</div>
+                <button class="counter-btn" onclick="changeCount(1)" aria-label="Más">+</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Disfraz <span class="optional">— Opcional</span></label>
+              <input class="form-input" type="text" id="disfraz" placeholder="¿de que personaje vas a venir?"/>
+              <p class="form-hint">No es obligatorio, ¡pero suma puntos al ambiente!</p>
+            </div>
+            <div class="form-group">
+              <label>¿Cómo vas a venir?</label>
+              <div class="mode-btns">
+                <button class="mode-btn active" id="btn-pie" onclick="selMode('pie')">
+                  <span class="mode-btn-icon">🚶</span>A pie
+                </button>
+                <button class="mode-btn inactive" id="btn-auto" onclick="selMode('auto')">
+                  <span class="mode-btn-icon">🚗</span>En auto
+                </button>
+              </div>
+            </div>
+            <div class="auto-fields" id="auto-fields">
+              <p class="auto-notice">ℹ️ Datos para el acceso al autocine</p>
+              <div class="form-group" style="margin:0;">
+                <label for="patente">Patente del vehículo</label>
+                <input class="form-input" type="text" id="patente" placeholder="Ej: AB 123 CD"/>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label for="personas">Personas en el auto (incluído vos)</label>
+                <input class="form-input" type="number" id="personas" min="1" max="6" placeholder="Ej: 3"/>
+              </div>
+            </div>
+            <button class="btn-submit" onclick="submitForm()">Reservar mi lugar</button>
+          </div>
+        </div>
+        <div class="form-success" id="form-success">
+          <span class="success-icon">🎬</span>
+          <div class="success-title">¡Reserva confirmada!</div>
+          <p class="success-sub">Muchas gracias <strong id="success-nombre" style="color:var(--green);"></strong>, te enviaremos la confirmación a tu mail.<br>Nos vemos el 15 de noviembre en el Hipódromo.</p>
+        </div>
+      </div>
+
+      <!-- DERECHA: imagen autocine -->
+      <div class="autocine-panel">
+        <img
+          class="autocine-img"
+          src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=85"
+          alt="Autocine bajo las estrellas"
+          onerror="this.src='https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&q=85'"
+        />
+        <div class="autocine-caption">
+          <div class="autocine-caption-title">🚗 Experiencia autocine</div>
+          <div class="autocine-caption-sub">Viví el festival desde la comodidad de tu auto. Lugares limitados — reservá el tuyo ahora.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div style="width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;">
+      <span style="font-size:8px;font-weight:900;color:#c00;text-align:center;line-height:1.1;">OLGA</span>
+    </div>
+    <span class="footer-wordmark">OLGA</span>
+    <span class="footer-sub">· Noche Estrellada 2025</span>
+  </div>
+  <div class="footer-links">
+    <a class="footer-link" href="#">Términos y condiciones</a>
+    <a class="footer-link" href="#">Contacto</a>
+  </div>
+</footer>
+
+<script>
+// ── STARS ────────────────────────────────────
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 90; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*80}%;left:${Math.random()*100}%;--op:${0.3+Math.random()*0.7};--dur:${2+Math.random()*4}s;animation-delay:${Math.random()*4}s;`;
+  starsEl.appendChild(s);
+}
+
+// ── COUNTDOWN ────────────────────────────────
+const target = new Date('2026-11-15T18:00:00-03:00');
+function tick() {
+  const diff = target - new Date();
+  const pad = n => String(Math.max(0,Math.floor(n))).padStart(2,'0');
+  if (diff <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00'); return; }
+  document.getElementById('cd-d').textContent = pad(diff/86400000);
+  document.getElementById('cd-h').textContent = pad(diff%86400000/3600000);
+  document.getElementById('cd-m').textContent = pad(diff%3600000/60000);
+  document.getElementById('cd-s').textContent = pad(diff%60000/1000);
+}
+tick(); setInterval(tick,1000);
+
+// ── MOVIES DATA ──────────────────────────────
+const rows = [
+  [
+    { title:"Midsommar",      img:"https://image.tmdb.org/t/p/w300/7LEI8ulZzO5gy9Ww2NVCrKmHeDZ.jpg",   genre:"Terror",   gc:"#e84848", hora:"18:30", idioma:"Subtitulada", pantalla:"Aire libre 1" },
+    { title:"The Conjuring",  img:"https://image.tmdb.org/t/p/w300/wVYREutTvI2tmxr6ujrHT704wGF.jpg",   genre:"Terror",   gc:"#e84848", hora:"19:00", idioma:"Castellano",  pantalla:"Autocine"     },
+    { title:"Kill Bill",      img:"https://image.tmdb.org/t/p/w300/v7TaX8kXMXs5yFFGR41guUDNcnB.jpg",   genre:"Thriller", gc:"#e85c1a", hora:"20:30", idioma:"Subtitulada", pantalla:"Aire libre 2" },
+    { title:"Scream",         img:"https://image.tmdb.org/t/p/w300/onDP1vMYBNOfFy4GDiP29UxKPdX.jpg",   genre:"Terror",   gc:"#e84848", hora:"21:00", idioma:"Castellano",  pantalla:"Autocine"     },
+  ],
+  [
+    { title:"Pulp Fiction",   img:"https://image.tmdb.org/t/p/w300/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",   genre:"Thriller", gc:"#e85c1a", hora:"18:30", idioma:"Subtitulada", pantalla:"Aire libre 1" },
+    { title:"La La Land",     img:"https://image.tmdb.org/t/p/w300/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg",   genre:"Drama",    gc:"#7ab8e8", hora:"19:00", idioma:"Subtitulada", pantalla:"Autocine"     },
+    { title:"Interstellar",   img:"https://image.tmdb.org/t/p/w300/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",   genre:"Sci-Fi",   gc:"#4ae8c0", hora:"20:00", idioma:"Subtitulada", pantalla:"Aire libre 2" },
+    { title:"Relatos Salvajes",img:"https://image.tmdb.org/t/p/w300/8xOPoq7sIVBYgxmgfXY0vBsGPaZ.jpg",   genre:"Drama",    gc:"#7ab8e8", hora:"21:00", idioma:"Castellano",  pantalla:"Aire libre 1" },
+  ]
+];
+
+// How many cards visible per row
+const VISIBLE = 3;
+const offsets = [0, 0];
+
+function buildRow(rowIdx) {
+  const track = document.getElementById(`track-${rowIdx}`);
+  rows[rowIdx].forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+    card.innerHTML = `
+      <img class="movie-thumb" src="${m.img}" alt="${m.title}" loading="lazy" crossorigin="anonymous"
+           onerror="this.onerror=null;this.src='https://via.placeholder.com/300x450/1a0040/b5f23d?text=${encodeURIComponent(m.title)}'">
+      <div class="movie-overlay-base"></div>
+      <div class="movie-badge" style="background:${m.gc}22;color:${m.gc};border:0.5px solid ${m.gc}66;">${m.genre}</div>
+      <div class="movie-static-title">${m.title}</div>
+      <div class="movie-info-hover">
+        <div class="movie-hover-title">${m.title}</div>
+        <div class="movie-detail"><span class="movie-detail-icon">🕐</span>${m.hora} hs</div>
+        <div class="movie-detail"><span class="movie-detail-icon">🌐</span>${m.idioma}</div>
+        <span class="pantalla-pill">${m.pantalla}</span>
+      </div>`;
+    track.appendChild(card);
+  });
+  updateArrows(rowIdx);
+}
+
+function slide(rowIdx, dir) {
+  const total = rows[rowIdx].length;
+  offsets[rowIdx] = Math.max(0, Math.min(total - VISIBLE, offsets[rowIdx] + dir));
+  const track = document.getElementById(`track-${rowIdx}`);
+  const cardW = track.querySelector('.movie-card').offsetWidth + 14;
+  track.style.transform = `translateX(-${offsets[rowIdx] * cardW}px)`;
+  updateArrows(rowIdx);
+}
+
+function updateArrows(rowIdx) {
+  const total = rows[rowIdx].length;
+  document.getElementById(`arrow-prev-${rowIdx}`).disabled = offsets[rowIdx] === 0;
+  document.getElementById(`arrow-next-${rowIdx}`).disabled = offsets[rowIdx] >= total - VISIBLE;
+}
+
+buildRow(0);
+buildRow(1);
+
+// ── COUNTER ──────────────────────────────────
+let count = 1;
+function changeCount(d) { count=Math.max(1,Math.min(10,count+d)); document.getElementById('cnt').textContent=count; }
+
+// ── MODE SELECTOR ────────────────────────────
+function selMode(m) {
+  const pie=document.getElementById('btn-pie'), auto=document.getElementById('btn-auto'), af=document.getElementById('auto-fields');
+  if(m==='auto'){auto.className='mode-btn active';pie.className='mode-btn inactive';af.classList.add('visible');}
+  else{pie.className='mode-btn active';auto.className='mode-btn inactive';af.classList.remove('visible');}
+}
+
+// ── FORM SUBMIT ──────────────────────────────
+function submitForm() {
+  const nombre=document.getElementById('nombre').value.trim();
+  const mail=document.getElementById('mail').value.trim();
+  if(!nombre||!mail){alert('Por favor completá tu nombre y mail para continuar.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){alert('El mail no parece válido. Revisalo e intentá de nuevo.');return;}
+  // Use only first name for the message
+  const primerNombre = nombre.split(' ')[0];
+  document.getElementById('success-nombre').textContent = primerNombre;
+  document.getElementById('form-content').style.display='none';
+  document.getElementById('form-success').classList.add('visible');
+}
+
+// ── SCROLL ANIMATIONS ────────────────────────
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry,i)=>{
+    if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*80);observer.unobserve(entry.target);}
+  });
+},{threshold:0.12});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+// ── NAV SCROLL ───────────────────────────────
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').style.background = window.scrollY>60?'rgba(13,0,32,0.95)':'rgba(13,0,32,0.7)';
+});
+</script>
+</body>
+</html>
